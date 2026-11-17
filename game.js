@@ -1299,14 +1299,14 @@
     }
   }
 
+  
   if (document.readyState === 'loading') {
     window.addEventListener(
       'DOMContentLoaded',
-startGame() {
-  if (this.starting) {
-    return;
+      startGame,
+      { once: true }
+    );
+  } else {
+    startGame();
   }
-
-  this.starting = true;
-  this.scene.start('Game');
-}
+})();
