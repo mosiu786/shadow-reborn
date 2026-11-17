@@ -42,9 +42,29 @@ class Menu extends Phaser.Scene{
   this.add.text(W/2,190,'SHADOW',{fontFamily:'Georgia',fontSize:'92px',fontStyle:'bold',color:'#dce8ff',stroke:'#334c77',strokeThickness:3}).setOrigin(.5).setShadow(0,0,28,'#6faaff',.8);
   this.add.text(W/2,275,'REBORN',{fontFamily:'Georgia',fontSize:'74px',color:'#8fb9ef',letterSpacing:16}).setOrigin(.5);
   this.add.text(W/2,355,'THE KINGDOM REMEMBERS YOUR NAME',{fontFamily:'Arial',fontSize:'14px',color:'#8d9db8',letterSpacing:5}).setOrigin(.5);
-  const start=this.add.text(W/2,485,'[ ENTER THE FORGOTTEN REALM ]',{fontFamily:'Arial',fontSize:'19px',color:'#e6c27a',letterSpacing:3}).setOrigin(.5).setInteractive({useHandCursor:true});
-  start.on('pointerover',()=>start.setColor('#ffffff'));start.on('pointerout',()=>start.setColor('#e6c27a'));
-  start.on('pointerdown',()=>this.scene.start('Game'));
+  
+const start = this.add.text(
+  W / 2,
+  485,
+  '[ ENTER THE FORGOTTEN REALM ]',
+  {
+    fontFamily: 'Arial',
+    fontSize: '19px',
+    color: '#e6c27a',
+    letterSpacing: 3
+  }
+).setOrigin(0.5);
+
+start.setInteractive({ useHandCursor: true });
+
+start.on('pointerover', () => start.setColor('#ffffff'));
+start.on('pointerout', () => start.setColor('#e6c27a'));
+
+// Mobile and desktop pointer fallback
+this.input.once('pointerdown', () => {
+  this.scene.start('Game');
+});
+
   this.input.keyboard.once('keydown-ENTER',()=>this.scene.start('Game'));
   this.add.text(W/2,570,'A / D or ARROWS  ·  SPACE TO JUMP  ·  J TO STRIKE  ·  K TO SHADOW BURST',{fontFamily:'Arial',fontSize:'12px',color:'#71809b',letterSpacing:1}).setOrigin(.5);
   this.add.text(W/2,610,'MOBILE: USE THE ON-SCREEN CONTROLS',{fontFamily:'Arial',fontSize:'11px',color:'#56647d',letterSpacing:2}).setOrigin(.5);
