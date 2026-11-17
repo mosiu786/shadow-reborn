@@ -1302,10 +1302,11 @@
   if (document.readyState === 'loading') {
     window.addEventListener(
       'DOMContentLoaded',
-      startGame,
-      { once: true }
-    );
-  } else {
-    startGame();
+startGame() {
+  if (this.starting) {
+    return;
   }
-})();
+
+  this.starting = true;
+  this.scene.start('Game');
+}
